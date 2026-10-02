@@ -325,29 +325,3 @@ else:
                 f"Email sending failed: {str(e)}"
             )
 
-st.divider()
-
-st.subheader("System Workflow")
-
-st.code(
-    """
-YouTube Discovery
-        ↓
-Creator Deduplication
-        ↓
-Channel Enrichment
-        ↓
-5K–100K Follower Filter
-        ↓
-Gemini Content Classification
-        ↓
-Public Email Enrichment
-        ↓
-AI Personalization
-        ↓
-Email / Instagram DM
-        ↓
-SQLite Outreach Tracking
-    """,
-    language="text"
-)
