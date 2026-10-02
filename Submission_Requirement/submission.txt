@@ -1,0 +1,196 @@
+EDXSO AI INFLUENCER OUTREACH SYSTEM
+Submission Supporting Information
+
+
+1. SAMPLE PERSONALIZED OUTREACH MESSAGES
+
+The system generates personalized outreach messages using creator-specific information such as niche, content themes, and recent content.
+
+Email format:
+- Length: approximately 60–90 words
+- Personalized using available creator information
+- Includes an AI collaboration/value proposition
+- Generated dynamically for each qualified creator
+
+Instagram DM format:
+- Length: approximately 15–30 words
+- Personalized using creator niche and recent content
+- Intended for manual Instagram outreach when a public email is unavailable
+
+The project stores generated personalized messages in the influencer dataset. The system does not fabricate creator information or contact details.
+
+Sample structure:
+
+Creator: [Actual creator from generated dataset]
+Email: [Actual public email or Not Found]
+
+Personalized Email:
+[Generated personalized email from the project dataset]
+
+Instagram DM:
+[Generated personalized Instagram DM from the project dataset]
+
+
+2. AUTOMATION WORKFLOW
+
+The complete workflow is:
+
+YouTube Data API
+        ↓
+Influencer Discovery
+        ↓
+Deduplication
+        ↓
+Subscriber Filtering
+        ↓
+Recent Video Enrichment
+        ↓
+Public Email Enrichment
+        ↓
+Gemini AI Classification
+        ↓
+Content Relevance + Brand Fit
+        ↓
+Personalized Email + Instagram DM
+        ↓
+Gmail API / Manual Instagram Outreach
+        ↓
+SQLite Outreach Tracking
+        ↓
+Streamlit Dashboard
+
+Workflow Details:
+
+1. Influencer Discovery
+The system searches YouTube for technology and AI-related creators using multiple search queries.
+
+2. Filtering
+Creators are filtered using subscriber count, technology/AI relevance, recent content, content themes, and brand fit.
+
+3. Enrichment
+The system collects creator information, recent videos, subscriber count, views, likes, comments, and other available information.
+
+4. Contact Enrichment
+The system searches publicly available creator information for contact emails. If no public email is available, the value is stored as "Not Found". Emails are never guessed or fabricated.
+
+5. AI Classification
+Gemini analyzes creator information and recent content to determine niche, content themes, content relevance, brand fit, qualification status, and reason.
+
+6. Personalization
+Gemini generates a personalized email and Instagram DM for qualified creators.
+
+7. Outreach
+Creators with public emails can be contacted using the Gmail API. Instagram messages are provided as a manual workflow and the system does not bypass Instagram restrictions.
+
+8. Tracking
+SQLite records generated outreach, sent status, timestamps, Gmail message IDs, and errors.
+
+9. Duplicate Prevention
+Existing outreach records are checked before sending so that previously contacted creators are not unnecessarily contacted again.
+
+10. Dashboard
+Streamlit provides creator search, qualification details, personalized outreach previews, outreach status, and Gmail sending.
+
+
+3. SETUP INSTRUCTIONS
+
+Requirements:
+- Python 3.x
+- Google Cloud project
+- YouTube Data API access
+- Gemini API key
+- Gmail API access
+- Google OAuth 2.0 Desktop credentials
+
+Installation:
+
+1. Clone the repository.
+
+2. Open the project directory.
+
+3. Create and activate a Python virtual environment.
+
+4. Install dependencies:
+
+pip install -r requirements.txt
+
+Environment configuration:
+
+Create a .env file:
+
+GEMINI_API_KEY=your_gemini_api_key
+
+YouTube API:
+
+Configure a YouTube Data API key in the discovery module.
+
+Gmail API:
+
+Create a Google OAuth Desktop application and download credentials.json.
+
+Place credentials.json in the project root.
+
+The first Gmail authentication generates token.json locally.
+
+Do not commit .env, credentials.json, token.json, or outreach.db to GitHub.
+
+Run the Streamlit application:
+
+streamlit run app.py
+
+The application opens the Streamlit dashboard in the browser.
+
+
+4. LIST OF APIS AND TOOLS USED
+
+Programming Language:
+- Python
+
+APIs:
+- YouTube Data API
+- Gemini API
+- Gmail API
+- Google OAuth 2.0
+
+Libraries and Tools:
+- Pandas
+- Streamlit
+- SQLite
+- Google GenAI SDK
+- Google API Python Client
+- Google Auth Libraries
+- Pydantic
+- Requests
+- BeautifulSoup
+
+AI:
+- Gemini for creator classification
+- Gemini for content theme extraction
+- Gemini for brand-fit analysis
+- Gemini for personalized email generation
+- Gemini for personalized Instagram DM generation
+
+Database:
+- SQLite
+
+Frontend/Dashboard:
+- Streamlit
+
+Version Control:
+- Git
+- GitHub
+
+
+5. DATA INTEGRITY
+
+The system uses publicly available creator information.
+
+Public contact emails are recorded only when they are found from available public sources.
+
+If an email cannot be found, it is stored as:
+
+Not Found
+
+The system does not guess, fabricate, or generate email addresses.
+
+Calculated engagement values are clearly treated as analytical engagement-rate proxies based on available video statistics and are not represented as official platform-provided metrics.
